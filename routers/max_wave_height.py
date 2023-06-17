@@ -1,6 +1,11 @@
 from fastapi import APIRouter
+import xarray as xr
 
 router = APIRouter()
+
+dataset_filename: str = "waves_2019-01-01.nc"
+
+dataset = xr.open_dataset(dataset_filename)
 
 @router.get("/max_wave_height_at_point/")
 async def location_info(lat: float, lng: float):
